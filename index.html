@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Clara Katz · Free Diving</title>
+  <meta name="description" content="Landing page for a freediving coach." />
+  <link rel="icon" href="icon.png" type="image/png">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <style>
+    :root {
+      --ocean-900: #0b1c1e;
+      --ocean-700: #103b40;
+      --ocean-500: #1f6f78;
+      --ocean-300: #6db3b8;
+      --sand-700: #9f7c4f;
+      --sand-500: #c8a36b;
+      --sand-200: #e8dcc8;
+      --foam: #f5f0e8;
+      --accent: #e56b3b;
+      --shadow: 0 24px 60px rgba(10, 28, 32, 0.18);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "DIN Alternate", "DIN Alternative", system-ui, -apple-system, sans-serif;
+      color: var(--ocean-900);
+      background: radial-gradient(circle at top, #fdf7ef 0%, #f5efe6 45%, #eef3f2 100%);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    .page { min-height: 100vh; overflow-x: hidden; }
+
+    /* ── Hero ── */
+    .hero {
+      position: relative;
+      min-height: 90vh;
+      padding: 32px 6vw 80px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background-image: linear-gradient(120deg, rgba(11,28,32,.7), rgba(31,111,120,.4)), url("freedive1.jpg");
+      background-size: cover;
+      background-position: center;
+      color: var(--foam);
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 20% 0%, rgba(245,240,232,.25), transparent 55%);
+      pointer-events: none;
+    }
+
+    .nav {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      z-index: 2;
+    }
+    .logo { font-size: 1.3rem; letter-spacing: .06em; text-transform: uppercase; }
+    .nav-links { display: flex; gap: 24px; font-size: .95rem; }
+    .nav-links a { position: relative; }
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0; bottom: -6px;
+      width: 0; height: 2px;
+      background: var(--accent);
+      transition: width .3s ease;
+    }
+    .nav-links a:hover::after { width: 100%; }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 640px;
+      margin-top: 80px;
+      animation: fadeUp .9s ease both;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(245,240,232,.18);
+      border: 1px solid rgba(245,240,232,.35);
+      font-size: .85rem;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+    }
+    h1, h2, h3 { font-weight: 700; letter-spacing: .01em; }
+    h1 { font-size: clamp(2.8rem, 4vw, 4.4rem); margin: 18px 0 12px; }
+    .lead { font-size: 1.15rem; margin-bottom: 24px; }
+    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 22px;
+      border-radius: 999px;
+      font-weight: 600;
+      letter-spacing: .01em;
+      transition: transform .3s ease, box-shadow .3s ease;
+      cursor: pointer;
+    }
+    .btn-primary { background: var(--accent); color: #fff; box-shadow: 0 12px 24px rgba(229,107,59,.35); }
+    .btn-ghost { border: 1px solid rgba(245,240,232,.5); color: var(--foam); background: rgba(15,35,40,.4); }
+    .btn:hover { transform: translateY(-2px); }
+
+    .hero-highlight {
+      margin-top: 34px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 16px;
+      background: rgba(15,35,40,.45);
+      padding: 18px;
+      border-radius: 20px;
+      border: 1px solid rgba(245,240,232,.2);
+    }
+    .stat { display: block; font-size: 1.1rem; font-weight: 600; }
+    .label { font-size: .85rem; opacity: .8; }
+
+    .section { padding: 90px 6vw; }
+    .section.sand { background: linear-gradient(120deg, rgba(232,220,200,.9), rgba(245,240,232,.6)); }
+    .intro { padding-top: 70px; }
+
+    .intro-card {
+      max-width: 880px;
+      margin: 0 auto;
+      background: rgba(255,255,255,.85);
+      border-radius: 28px;
+      padding: 40px;
+      box-shadow: var(--shadow);
+      display: grid;
+      gap: 18px;
+    }
+    .intro-card h2 { font-size: clamp(2rem, 3vw, 3.2rem); }
+    .intro-card p { font-size: 1.05rem; color: rgba(11,28,32,.8); }
+
+    .section-header { max-width: 720px; margin-bottom: 40px; }
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      font-size: .75rem;
+      color: var(--ocean-500);
+      margin-bottom: 12px;
+    }
+    .section h2 { font-size: clamp(2rem, 3vw, 3rem); margin-bottom: 12px; }
+
+    .split {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(260px, 1fr));
+      gap: 32px;
+      align-items: center;
+    }
+    .split-image { box-shadow: var(--shadow); border-radius: 24px; overflow: hidden; }
+    .split-image img { height: 100%; object-fit: cover; }
+
+    .list { list-style: none; margin-top: 16px; display: grid; gap: 10px; }
+    .list li::before { content: "•"; margin-right: 10px; color: var(--accent); }
+
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; }
+    .card {
+      background: #fff;
+      border-radius: 22px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+      animation: fadeUp .8s ease both;
+      animation-delay: var(--delay, 0s);
+    }
+    .card img {
+      border-radius: 16px;
+      height: 200px;
+      width: 100%;
+      object-fit: cover;
+      object-position: center;
+      margin-bottom: 16px;
+    }
+    .card h3 { margin-bottom: 8px; }
+
+    .timeline { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; }
+    .timeline-item {
+      background: #fff;
+      padding: 24px;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      border-left: 4px solid var(--ocean-500);
+    }
+    .timeline-item span { font-weight: 700; color: var(--ocean-500); }
+
+    .carousel { position: relative; }
+    .carousel-track {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(240px, 1fr);
+      gap: 18px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding: 8px 4px 20px;
+      scrollbar-width: none;
+    }
+    .carousel-track::-webkit-scrollbar { display: none; }
+    .carousel-item {
+      scroll-snap-align: center;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      background: #fff;
+    }
+    .carousel-item img { height: 240px; width: 100%; object-fit: cover; object-position: center; }
+    .carousel-item.center-focus img { object-position: center 35%; }
+
+    .cta {
+      background: linear-gradient(120deg, rgba(16,59,64,.95), rgba(31,111,120,.8));
+      color: var(--foam);
+      padding: 32px;
+      border-radius: 28px;
+      display: grid;
+      gap: 20px;
+      align-items: center;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      box-shadow: var(--shadow);
+    }
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 22px;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 1rem;
+      box-shadow: 0 12px 24px rgba(229,107,59,.35);
+      transition: transform .3s ease;
+      justify-self: start;
+    }
+    .contact-link:hover { transform: translateY(-2px); }
+    .contact-note { font-size: .9rem; opacity: .8; margin-top: 10px; }
+
+    .footer {
+      padding: 40px 6vw 60px;
+      text-align: center;
+      font-size: .9rem;
+      color: rgba(11,28,32,.7);
+    }
+
+    .reveal { animation: fadeUp .8s ease both; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 860px) {
+      .nav { flex-direction: column; align-items: flex-start; }
+      .nav-links { flex-wrap: wrap; }
+      .hero { min-height: auto; }
+      .split { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .hero-actions { flex-direction: column; align-items: stretch; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <header class="hero">
+      <nav class="nav">
+        <a class="logo" href="#top">The Ocean Katz</a>
+        <div class="nav-links">
+          <a href="#approach">Approach</a>
+          <a href="#programs">My journey</a>
+          <a href="#experience">Expeditions</a>
+        </div>
+        <a class="btn btn-ghost" href="#contact">Contact</a>
+      </nav>
+
+      <div class="hero-content" id="top">
+        <p class="pill">Red Sea · Desert · Sinai</p>
+        <h1>The Ocean Katz</h1>
+        <p class="lead">
+          I guide you toward calm, elegant freediving between deep blues and warm sands.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#programs">My journey</a>
+          <a class="btn btn-ghost" href="#approach">My approach</a>
+        </div>
+        <div class="hero-highlight">
+          <div>
+            <span class="stat">Free dive</span>
+            <span class="label">Master instructor</span>
+          </div>
+          <div>
+            <span class="stat">Classes</span>
+            <span class="label">private &amp; small groups</span>
+          </div>
+          <div>
+            <span class="stat">Location</span>
+            <span class="label">Red Sea &amp; Sinai</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- Intro -->
+      <section class="section intro reveal" id="intro">
+        <div class="intro-card">
+          <p class="eyebrow">Presentation</p>
+          <h2>
+            Hi, I am Clara Katz — a French AIDA Master Freediving Instructor,
+            certified yoga teacher, and AIDA judge for both pool and depth competitions.
+          </h2>
+          <p>
+            I am based in Dahab, a magical town on the Red Sea that has become a global hub
+            for freedivers and a sanctuary for those seeking inner stillness and a close
+            connection with nature.
+          </p>
+          <p>
+            With a deep passion for breath, movement, and the ocean, I guide students through
+            their freediving journeys — from first fins in the water to advanced depth training
+            — always rooted in safety, mindfulness, and personal growth. My approach blends
+            the discipline of AIDA standards with the balance, patience, and awareness
+            cultivated through yoga.
+          </p>
+        </div>
+      </section>
+
+      <!-- Approach -->
+      <section class="section reveal" id="approach">
+        <div class="split">
+          <div class="split-text">
+            <div class="section-header">
+              <p class="eyebrow">Approach</p>
+              <h2>Deep breath, dive in, and welcome to your next chapter.</h2>
+              <p>
+                I blend rigor, conscious breathing, and connection to place to build a
+                steady, calming progression.
+              </p>
+            </div>
+            <h3>Between silence, breath, and sandy horizons.</h3>
+            <p>
+              Each session is designed to build confidence, refine technique, and offer
+              a unique sensory experience.
+            </p>
+            <ul class="list">
+              <li>Mental preparation &amp; breathing</li>
+              <li>Dive technique and safety</li>
+              <li>Marine exploration and desert rituals</li>
+            </ul>
+          </div>
+          <div class="split-image">
+            <img src="freedive2.jpg" alt="Free diving" />
+          </div>
+        </div>
+      </section>
+
+      <!-- Programs -->
+      <section class="section sand reveal" id="programs">
+        <div class="cards">
+          <article class="card" style="--delay: 0s;">
+            <img src="freedive1.jpg" alt="Freediving class" />
+            <h3>Freediving Classes</h3>
+            <p>Whether you dream of diving deep into the Blue Hole, improving your technique,
+              or simply learning to relax and reconnect with yourself, I'm here to guide and
+              support your journey — in and out of the water.</p>
+          </article>
+          <article class="card" style="--delay: 0.1s;">
+            <img src="yoga1.jpg" alt="Yoga and breath" />
+            <h3>Yoga &amp; Breath</h3>
+            <p>I am a certified Hatha Yoga teacher, trained at the Sivananda Ashram in India.
+              Through breathwork, body awareness, flexibility, and relaxation techniques, yoga
+              becomes a powerful complement to freediving.</p>
+          </article>
+          <article class="card" style="--delay: 0.2s;">
+            <img src="jugecolor.jpg" alt="AIDA Judge" />
+            <h3>Judge</h3>
+            <p>Since 2023, I have been an active AIDA judge, certified for both pool and depth
+              competitions — ensuring fairness, safety, and integrity during official events.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Experience -->
+      <section class="section reveal" id="experience">
+        <div class="section-header">
+          <p class="eyebrow">Experience</p>
+          <h2>A path with the sea, the desert, and you.</h2>
+        </div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <span>01</span>
+            <h3>Meet &amp; intentions</h3>
+            <p>We define your rhythm, goals, and comfort together.</p>
+          </div>
+          <div class="timeline-item">
+            <span>02</span>
+            <h3>Technique &amp; flow</h3>
+            <p>Progressive learning with a focus on safety.</p>
+          </div>
+          <div class="timeline-item">
+            <span>03</span>
+            <h3>Free exploration</h3>
+            <p>Guided dives and contemplative moments.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Gallery -->
+      <section class="section sand reveal" id="gallery">
+        <div class="section-header">
+          <p class="eyebrow">Gallery</p>
+        </div>
+        <div class="carousel" aria-label="Photo gallery">
+          <div class="carousel-track">
+            <figure class="carousel-item">
+              <img src="yoga2.jpg" alt="Gallery photo 1" />
+            </figure>
+            <figure class="carousel-item center-focus">
+              <img src="eleve1.jpg" alt="Gallery photo 2" />
+            </figure>
+            <figure class="carousel-item">
+              <img src="1000022047.jpg" alt="Gallery photo 3" />
+            </figure>
+            <figure class="carousel-item">
+              <img src="jugeduo.jpg" alt="Gallery photo 4" />
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section class="section reveal" id="contact">
+        <div class="cta">
+          <div>
+            <p class="eyebrow">Contact</p>
+            <h2>Let's go together.</h2>
+            <p>Write to me for dates, programs, or collaborations.</p>
+          </div>
+          <div>
+            <a class="contact-link" href="mailto:theoceankatz@gmail.com">
+              ✉ Send me an email
+            </a>
+            <p class="contact-note">I'll get back to you as soon as possible.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>Clara Katz · Free Diving &amp; Yoga · Sinai</p>
+    </footer>
+  </div>
+</body>
+
+</html>
