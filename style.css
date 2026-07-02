@@ -32,7 +32,8 @@ img { display: block; max-width: 100%; }
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  background-image: linear-gradient(120deg, rgba(11,28,32,.7), rgba(31,111,120,.4)), url("freedivedeep 1.jpeg");
+  background-image: linear-gradient(120deg, rgba(11,28,32,.4), rgba(31,111,120,.2)), url("freedivedeep 1.jpeg");
+  filter: brightness(1.15);
   background-size: cover;
   background-position: center;
   color: var(--foam);
@@ -41,7 +42,6 @@ img { display: block; max-width: 100%; }
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 20% 0%, rgba(245,240,232,.25), transparent 55%);
   pointer-events: none;
 }
 
