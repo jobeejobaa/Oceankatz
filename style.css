@@ -252,7 +252,7 @@ h1 { font-size: clamp(2.8rem, 4vw, 4.4rem); margin: 18px 0 12px; }
 
 /* ── Contact ── */
 .cta {
-  background: linear-gradient(120deg, rgba(16,59,64,.95), rgba(31,111,120,.8));
+  background: #005E97;
   color: var(--foam);
   padding: 32px;
   border-radius: 28px;
