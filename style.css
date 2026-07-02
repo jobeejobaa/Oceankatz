@@ -229,6 +229,28 @@ h1 { font-size: clamp(2.8rem, 4vw, 4.4rem); margin: 18px 0 12px; }
 
 /* ── Carousel ── */
 .carousel { position: relative; }
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: rgba(255,255,255,0.9);
+  border: none;
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 2px 12px rgba(0,0,0,.15);
+  transition: background .2s, transform .2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #195C85;
+}
+.carousel-btn:hover { background: #195C85; color: #fff; transform: translateY(-50%) scale(1.08); }
+.carousel-btn-prev { left: 4px; }
+.carousel-btn-next { right: 4px; }
 .carousel-track {
   display: grid;
   grid-auto-flow: column;
@@ -246,8 +268,28 @@ h1 { font-size: clamp(2.8rem, 4vw, 4.4rem); margin: 18px 0 12px; }
   overflow: hidden;
   box-shadow: var(--shadow);
   background: #fff;
+  position: relative;
+  cursor: pointer;
 }
-.carousel-item img { height: 240px; width: 100%; object-fit: cover; object-position: center; }
+.carousel-item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(25, 92, 133, 0.25);
+  opacity: 0;
+  transition: opacity .3s ease;
+  border-radius: 18px;
+}
+.carousel-item:hover::after { opacity: 1; }
+.carousel-item img {
+  height: 240px;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform .4s ease;
+  display: block;
+}
+.carousel-item:hover img { transform: scale(1.06); }
 .carousel-item.center-focus img { object-position: center 35%; }
 
 /* ── Contact ── */

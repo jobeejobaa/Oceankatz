@@ -125,6 +125,8 @@
           <p class="eyebrow">Gallery</p>
         </div>
         <div class="carousel" aria-label="Photo gallery">
+          <button class="carousel-btn carousel-btn-prev" aria-label="Photo précédente">&#8592;</button>
+          <button class="carousel-btn carousel-btn-next" aria-label="Photo suivante">&#8594;</button>
           <div class="carousel-track">
             <figure class="carousel-item">
               <img src="yoga2.jpg" alt="Gallery photo 1" />
@@ -177,6 +179,18 @@
             <figure class="carousel-item">
               <img src="Petaouchnok Magazine _ Freediving /Clara Katz putting on her wetsuit.jpg" alt="Clara en combinaison" />
             </figure>
+            <figure class="carousel-item">
+              <img src="Clara Katz getting her buoy ready for her freediving session 2.jpg" alt="Clara avec sa bouée" />
+            </figure>
+            <figure class="carousel-item">
+              <img src="GX011026_1734380763898.jpg" alt="Freediving cave" />
+            </figure>
+            <figure class="carousel-item">
+              <img src="freedive3.jpg" alt="Freediving" />
+            </figure>
+            <figure class="carousel-item">
+              <img src="freedive4.jpg" alt="Freediving" />
+            </figure>
           </div>
         </div>
       </section>
@@ -203,6 +217,24 @@
       <p>Clara Katz · Free Diving &amp; Yoga · Sinai</p>
     </footer>
   </div>
+<script>
+  // Shuffle carousel
+  const track = document.querySelector('.carousel-track');
+  const items = [...track.children];
+  for (let i = items.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    track.appendChild(items[j]);
+    items.splice(j, 1);
+  }
+
+  // Arrow navigation — scroll by full visible width
+  document.querySelector('.carousel-btn-prev').addEventListener('click', () => {
+    track.scrollBy({ left: -track.clientWidth, behavior: 'smooth' });
+  });
+  document.querySelector('.carousel-btn-next').addEventListener('click', () => {
+    track.scrollBy({ left: track.clientWidth, behavior: 'smooth' });
+  });
+</script>
 </body>
 
 </html>
